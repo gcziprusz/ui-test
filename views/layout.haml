@@ -1,13 +1,29 @@
-%html
-  %head
-    %title Lonely Planet UI Test
-    %link{rel: "stylesheet", href: 'css/style.css'}
-    %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'}
-    %script{src: 'js/read-more.js'}
+!!! 5
+/CZG html5 doctype
 
-  %body
+/[if lt IE 7] <html lang="en" class="no-js ie6">
+/[if IE 7 ]    <html lang="en" class="no-js ie7">
+/[if IE 8 ]    <html lang="en" class="no-js ie8">
+/[if IE 9 ]    <html lang="en" class="no-js ie9">
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+/CZG conditional styles
+
+%head
+    %title Lonely Planet UI Test
+
+    %meta{'charset' => 'utf-8'}
+    /CZG utf8 character encoding
+
+    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=Edge'}
+    /CZG set highest compatibility mode for IE
+
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+    /CZG match device width to layout width, with no initial zoom
+
+    %link{rel: 'stylesheet', href: 'css/style.css'}
+    %script{:data => {'main' => 'js/main'}, :src =>'js/lib/require.js'}
+	 
+%body
     = haml :nav
     = yield
     = haml :footer
-
-    
