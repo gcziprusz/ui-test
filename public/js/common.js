@@ -2,7 +2,9 @@
   requirejs.config({
     baseUrl: "js/lib",
     paths: {
-      app: "../app"
+      app: "../app",
+      c: "../app/controllers",
+      m: "../app/models"
     }
   });
 

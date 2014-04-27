@@ -9,36 +9,38 @@
       setModel: function(model) {
         this.model = model;
       },
-      animateHeight: function(el, h, duration) {
+      setDefaultState: function(m) {
+        this.setDefaultHeight(m.container, m.initialHeight);
+        return this.addClass(m.container, m.collapsedClassName);
+      },
+      setDefaultHeight: function(c, h) {
+        return $(c).height(h);
+      },
+      getSrc: function(el) {
+        return $(el).attr("src");
+      },
+      animateHeight: function(el, h, d) {
         el.animate({
           height: h
-        }, duration);
+        }, d);
       },
       setText: function(el, txt) {
         el.text(txt);
       },
-      isElementTaller: function(el, h) {
-        return el.height() > h;
+      hasClass: function(el, c) {
+        return el.hasClass(c);
+      },
+      removeClass: function(el, c) {
+        return el.removeClass(c);
+      },
+      addClass: function(el, c) {
+        return el.addClass(c);
       },
       createImgWithClass: function(src, className) {
         return $("<img/>").addClass(className).attr("src", src);
       },
       createElementWithClass: function(eltype, clss) {
         return $(document.createElement(eltype)).addClass(clss);
-      },
-      toggleHeight: function(expanded, container) {
-        if (expanded) {
-          return this.model.initialHeight;
-        } else {
-          return this.model.maximumHeight;
-        }
-      },
-      getReadMoreLabel: function(viewExpanded) {
-        if (viewExpanded) {
-          return this.model.txtReadMore;
-        } else {
-          return this.model.txtReadLess;
-        }
       },
       keyPressed: function(keyz, event) {
         return keyz.indexOf(event.keyCode) === -1;

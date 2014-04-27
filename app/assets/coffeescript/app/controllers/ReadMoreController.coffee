@@ -1,10 +1,33 @@
-define ["./BaseController"], (BaseController) ->
-  readMoreController = new BaseController("ReadMoreController")
-  readMoreController.start = (dis) ->
-    isViewExpanded = @isElementTaller(@model.container, @model.initialHeight)
-    @animateHeight @model.container, @toggleHeight(isViewExpanded, @model.container), @model.animateDuration
-    lblRead = @getReadMoreLabel(isViewExpanded)
-    @setText $(dis), lblRead
+define ["./BaseController"], (Base) ->
+  
+  Controller = new Base("ReadMoreController")
+
+  Controller.start = (dis) ->
+    
+    isCollapsed = @hasClass @model.container, 
+                            @model.collapsedClassName
+    
+    if isCollapsed
+      @animateHeight @model.container, 
+                     @model.maximumHeight, 
+                     @model.animateDuration
+      
+      @setText $(dis), 
+               @model.txtReadLess
+      
+      @removeClass @model.container, 
+                   @model.collapsedClassName
+    else
+      @animateHeight @model.container, 
+                     @model.initialHeight, 
+                     @model.animateDuration
+      
+      @setText $(dis), 
+               @model.txtReadMore
+
+      @addClass @model.container, 
+                @model.collapsedClassName
+    
     return
 
-  readMoreController
+  Controller

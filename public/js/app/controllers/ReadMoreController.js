@@ -1,17 +1,23 @@
 (function() {
-  define(["./BaseController"], function(BaseController) {
-    var readMoreController;
+  define(["./BaseController"], function(Base) {
+    var Controller;
 
-    readMoreController = new BaseController("ReadMoreController");
-    readMoreController.start = function(dis) {
-      var isViewExpanded, lblRead;
+    Controller = new Base("ReadMoreController");
+    Controller.start = function(dis) {
+      var isCollapsed;
 
-      isViewExpanded = this.isElementTaller(this.model.container, this.model.initialHeight);
-      this.animateHeight(this.model.container, this.toggleHeight(isViewExpanded, this.model.container), this.model.animateDuration);
-      lblRead = this.getReadMoreLabel(isViewExpanded);
-      this.setText($(dis), lblRead);
+      isCollapsed = this.hasClass(this.model.container, this.model.collapsedClassName);
+      if (isCollapsed) {
+        this.animateHeight(this.model.container, this.model.maximumHeight, this.model.animateDuration);
+        this.setText($(dis), this.model.txtReadLess);
+        this.removeClass(this.model.container, this.model.collapsedClassName);
+      } else {
+        this.animateHeight(this.model.container, this.model.initialHeight, this.model.animateDuration);
+        this.setText($(dis), this.model.txtReadMore);
+        this.addClass(this.model.container, this.model.collapsedClassName);
+      }
     };
-    return readMoreController;
+    return Controller;
   });
 
 }).call(this);

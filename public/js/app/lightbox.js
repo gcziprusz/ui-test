@@ -1,18 +1,16 @@
 (function() {
-  define(["jquery", "./controllers/LightBoxController", "./models/LightBoxModel"], function($, LightBoxController, LightBoxModel) {
+  define(["jquery", "c/LightBoxController", "m/LightBoxModel"], function($, Controller, Model) {
     var model;
 
-    model = new LightBoxModel($("body"), $(".images-container"), "lightbox", "lightboxImage", [13, 27]);
-    LightBoxController.setModel(model);
+    model = new Model($("body"), $(".images-container"), "lightbox", "lightboxImage", [13, 27]);
+    Controller.setModel(model);
     $(function() {
       model.imageContainer.on("click", "img", function() {
         var lb;
 
-        lb = LightBoxController.start(this);
+        lb = Controller.start(this);
         $(lb).on("keyup", function(e) {
-          if (!LightBoxController.keyPressed(LightBoxController.model.keycodes, e)) {
-            $("." + LightBoxController.model.imageClass).remove();
-          }
+          return Controller.close(e);
         });
       });
     });

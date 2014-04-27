@@ -1,12 +1,14 @@
 define ["jquery"], ($) ->
-  LightBoxModel = (parent, imgCont, clazz, lightboxImage, keycodes) ->
-    @parent = parent or $("body")
-    @imageContainer = imgCont or $(".images-container")
-    @imageClass = clazz or "lightbox"
-    @lightboxImage = lightboxImage or "lightboxImage"
-    @keycodes = keycodes or [
-      13
-      27
-    ]
+
+  LightBoxModel = (parent =         $("body"), 
+                   imgCont =        $(".images-container"), 
+                   clazz =          "lightbox", 
+                   lightboxImage =  "lightboxImage", 
+                   keycodes =       [13,27]) ->
+                   
+    @parent =         parent
+    @imageContainer = imgCont 
+    @imageClass =     clazz
+    @lightboxImage =  lightboxImage
+    @keycodes =       keycodes
     return
-  LightBoxModel

@@ -2,14 +2,28 @@
   define(["jquery"], function($) {
     var LightBoxModel;
 
-    LightBoxModel = function(parent, imgCont, clazz, lightboxImage, keycodes) {
-      this.parent = parent || $("body");
-      this.imageContainer = imgCont || $(".images-container");
-      this.imageClass = clazz || "lightbox";
-      this.lightboxImage = lightboxImage || "lightboxImage";
-      this.keycodes = keycodes || [13, 27];
+    return LightBoxModel = function(parent, imgCont, clazz, lightboxImage, keycodes) {
+      if (parent == null) {
+        parent = $("body");
+      }
+      if (imgCont == null) {
+        imgCont = $(".images-container");
+      }
+      if (clazz == null) {
+        clazz = "lightbox";
+      }
+      if (lightboxImage == null) {
+        lightboxImage = "lightboxImage";
+      }
+      if (keycodes == null) {
+        keycodes = [13, 27];
+      }
+      this.parent = parent;
+      this.imageContainer = imgCont;
+      this.imageClass = clazz;
+      this.lightboxImage = lightboxImage;
+      this.keycodes = keycodes;
     };
-    return LightBoxModel;
   });
 
 }).call(this);

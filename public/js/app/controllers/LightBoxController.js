@@ -1,8 +1,8 @@
 (function() {
-  define(["./BaseController"], function(BaseController) {
+  define(["./BaseController"], function(Base) {
     var lightBoxController;
 
-    lightBoxController = new BaseController("LightBoxController");
+    lightBoxController = new Base("LightBoxController");
     lightBoxController.start = function(dis) {
       var img, lightbox;
 
