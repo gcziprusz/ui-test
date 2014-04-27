@@ -3,8 +3,8 @@ define ["./BaseController"], (Base) ->
   Controller = new Base("LightBoxController")
 
   Controller.start = (dis) ->
-    img = @createImgWithClass(@getSrc dis, 
-                              @model.lightboxImage)    
+    img = @createImgWithClass @getSrc(dis), 
+                              @model.lightboxImage    
     lightbox = @createElementWithClass("div", 
                                        @model.imageClass)
     lightbox.append img    
@@ -12,8 +12,7 @@ define ["./BaseController"], (Base) ->
    
    Controller.close = (e) ->
      $(".#{@model.imageClass}")
-        .remove() unless Controller.keyPressed(
-                                       @model.keycodes,e)
+        .remove() unless Controller.keyPressed @model.keycodes,e
         return
 
-  lightBoxController
+  Controller
